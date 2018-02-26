@@ -1,0 +1,42 @@
+{
+  "name": "boiler",
+  "version": "0.1.0",
+  "description": "Base for JS project",
+  "main": "boiler.js",
+  "files": [
+    "dist/"
+  ],
+  "unpkg": "dist/boiler.min.js",
+  "jsdelivr": "dist/boiler.min.js",
+  "scripts": {
+    "lint": "eslint boiler.js",
+    "build": "webpack",
+    "prepublishOnly": "npm run lint && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GMartigny/boiler.js.git"
+  },
+  "keywords": [
+    "boiler"
+  ],
+  "author": "Guillaume Martigny <guillaume.martigny@gmail.com> (https://www.guillaume-martigny.fr)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GMartigny/boiler.js/issues"
+  },
+  "homepage": "https://gmartigny.github.io/boiler",
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "babel-loader": "^8.0.0-beta.0",
+    "uglifyjs-webpack-plugin": "^1.2.2",
+    "webpack": "^3.11.0"
+  },
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "eslint": "^4.18.1",
+    "@gmartigny/eslint-config": "^1.0.1"
+  }
+}
