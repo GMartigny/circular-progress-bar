@@ -1,40 +1,45 @@
 {
-  "name": "boiler",
-  "version": "0.1.0",
-  "description": "Base for JS project",
-  "main": "boiler.js",
+  "name": "circular-progress-bar",
+  "version": "0.2.0",
+  "description": "CSS circular progress bar.",
+  "main": "circular-progress-bar.js",
   "files": [
     "dist/"
   ],
-  "unpkg": "dist/boiler.min.js",
-  "jsdelivr": "dist/boiler.min.js",
+  "unpkg": "dist/circular-progress-bar.min.js",
+  "jsdelivr": "dist/circular-progress-bar.min.js",
   "scripts": {
-    "lint": "eslint boiler.js",
+    "lint": "eslint circular-progress-bar.js",
     "build": "webpack",
     "prepublishOnly": "npm run lint && npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GMartigny/boiler.js.git"
+    "url": "git+https://github.com/GMartigny/circular-progress-bar.git"
   },
   "keywords": [
-    "boiler"
+    "gauge",
+    "loader",
+    "component"
   ],
   "author": "Guillaume Martigny <guillaume.martigny@gmail.com> (https://www.guillaume-martigny.fr)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/GMartigny/boiler.js/issues"
+    "url": "https://github.com/GMartigny/circular-progress-bar/issues"
   },
-  "homepage": "https://gmartigny.github.io/boiler",
+  "homepage": "https://gmartigny.github.io/circular-progress-bar",
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.40",
     "@babel/preset-env": "^7.0.0-beta.40",
-    "babel-loader": "^8.0.0-beta.0",
+    "babel-loader": "^8.0.0-beta.2",
+    "css-loader": "^0.28.10",
+    "less": "^3.0.1",
+    "less-loader": "^4.0.6",
+    "style-loader": "^0.20.2",
     "uglifyjs-webpack-plugin": "^1.2.2",
     "webpack": "^3.11.0"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "peerDependencies": {
     "eslint": "^4.18.1",
     "@gmartigny/eslint-config": "^1.0.1"

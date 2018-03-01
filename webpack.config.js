@@ -1,7 +1,7 @@
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = {
-    entry: "./boiler.js",
+    entry: "./circular-progress-bar.js",
     plugins: [
         new UglifyJsPlugin(),
     ],
@@ -14,11 +14,20 @@ module.exports = {
                     presets: ["@babel/preset-env"],
                 },
             },
+        }, {
+            test: /\.less$/,
+            use: [{
+                loader: "style-loader",
+            }, {
+                loader: "css-loader",
+            }, {
+                loader: "less-loader",
+            }],
         }],
     },
     output: {
-        filename: "dist/boiler.min.js",
-        library: "Boiler",
+        filename: "dist/circular-progress-bar.min.js",
+        library: "CircularProgressBar",
         libraryTarget: "this",
         libraryExport: "default",
     },
