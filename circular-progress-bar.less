@@ -15,23 +15,22 @@
     // wrap all bars
     .@{prefix}-wrapper {
         .full();
+        overflow: hidden;
 
         // one for every bar
         .@{prefix}-bar {
             .full();
 
-            .@{prefix}-clip {
+            .@{prefix}-clip, .@{prefix}-part {
                 .full();
                 clip-path: inset(0 0 0 50%);
                 transition: transform ease-out;
 
-                .@{prefix}-part {
-                    .full();
-                    clip-path: inset(0 0 0 50%);
-                    transition-timing-function: ease-out;
-                    transition-property: transform, background-color;
-                    // Bar's color is here
-                }
+            }
+            .@{prefix}-clip  .@{prefix}-part {
+                border-radius: 50%;
+                transition-property: transform, background-color;
+                // Bar's color is here
             }
         }
     }
@@ -40,9 +39,9 @@
         position: absolute;
         border-radius: 50%;
         text-align: center;
-        font-family: monospace;
 
         .@{prefix}-text {
+            font-family: monospace;
             color: #FFF;
             mix-blend-mode: difference;
         }

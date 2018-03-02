@@ -15,13 +15,12 @@ module.exports = {
                 },
             },
         }, {
-            test: /\.less$/,
-            use: [{
-                loader: "style-loader",
-            }, {
+            test: /\.css/,
+            use: ["style-loader", {
                 loader: "css-loader",
-            }, {
-                loader: "less-loader",
+                options: {
+                    minimize: true,
+                },
             }],
         }],
     },

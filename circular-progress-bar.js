@@ -1,10 +1,10 @@
-import "./circular-progress-bar.less";
+import "./circular-progress-bar.css";
 
 const classesPrefix = "circular-progress-bar";
 
 /**
  * Create a new html element
- * @param {String} classes - Some css classes
+ * @param {String} [classes] - Some css classes
  * @param {HTMLElement} [parent] - Parent to append the element
  * @return {HTMLDivElement}
  */
@@ -17,9 +17,28 @@ const wrap = (classes, parent) => {
     return element;
 };
 
+/**
+ * Get item from an array without overflow
+ * @param {Array} array - Any array
+ * @param {Number} index - Any positive number
+ * @return {*}
+ */
 const getLooped = (array, index) => array[index % array.length];
 
-const toDeg = percent => percent * (360 / 100);
+/**
+ * Tell if two number are equals
+ * @param {Number} n1 - Any positive number
+ * @param {Number} n2 - Any positive number
+ * @return {Boolean}
+ */
+const equals = (n1, n2) => Math.abs(n1 - n2) < Number.EPSILON;
+
+/**
+ * Change percentage into degree
+ * @param {Number} percent - Any percentage
+ * @return {Number}
+ */
+const toDegree = percent => percent * (360 / 100);
 
 /**
  * Class for CircularProgressBar's Bar
@@ -30,10 +49,10 @@ class Bar {
      * Bar constructor
      */
     constructor () {
-        this.html = wrap("bar");
+        this.node = wrap("bar");
 
         this._nodes = (new Array(2)).fill().map(() => {
-            const clip = wrap("clip", this.html);
+            const clip = wrap("clip", this.node);
             return {
                 clip,
                 part: wrap("part", clip),
@@ -43,7 +62,7 @@ class Bar {
         /**
          * @private
          */
-        this._value = 0;
+        this._value = undefined;
     }
 
     /**
@@ -62,24 +81,27 @@ class Bar {
      * @param {Number} [offset=0] - Starting position in %
      */
     update (value, time, color, offset = 0) {
-        const rotate = `rotate3d(0, 0, 1, ${toDeg(value / 2) - 179}deg)`;
-        this._nodes.forEach((node) => {
-            node.clip.style.transitionDuration = `${time}ms`;
-            node.part.style.transitionDuration = `${time}ms`;
-            node.part.style.transform = rotate;
-            node.part.style.backgroundColor = color;
-        });
+        if (!equals(value, this._value)) {
+            const half = value / 2;
+            const rotate = `rotate3d(0,0,1,${toDegree(half) - 180}deg)`;
+            this._nodes.forEach((node) => {
+                node.clip.style.transitionDuration = `${time}ms`;
+                node.part.style.transitionDuration = `${time}ms`;
+                node.part.style.transform = rotate;
+                node.part.style.backgroundColor = color;
+            });
 
-        this._nodes[0].clip.style.transform = `rotate3d(0, 0, 1, ${toDeg(offset)}deg)`;
-        this._nodes[1].clip.style.transform = `rotate3d(0, 0, 1, ${toDeg((value / 2) + offset)}deg)`;
-        this._value = value;
+            this._nodes[0].clip.style.transform = `rotate3d(0,0,1,${toDegree(offset) + 0.3}deg)`;
+            this._nodes[1].clip.style.transform = `rotate3d(0,0,1,${toDegree(half + offset)}deg)`;
+            this._value = value;
+        }
     }
 
     /**
      * Delete the bar from the DOM
      */
     remove () {
-        this.html.remove();
+        this.node.remove();
     }
 }
 
@@ -90,27 +112,28 @@ class Bar {
 export default class CircularProgressBar {
     /**
      * CircularProgressBar constructor
-     * @param {Number|Array<Number>} [value=0] - Starting value or a set of values
-     * @param {CPBOptions} [options] - Some options
+     * @param {Number|Array<Number>} [value=0] - Starting value or set of values
+     * @param {CPBOptions} [options] - Component's options
      */
     constructor (value = 0, options) {
         this.options = Object.assign(CircularProgressBar.defaultOptions, options);
 
-        this.html = wrap();
+        this.node = wrap();
         const size = `${this.options.size}px`;
-        this.html.style.width = size;
-        this.html.style.height = size;
-        this.html.style.backgroundColor = this.options.background;
+        this.node.style.width = size;
+        this.node.style.height = size;
+        this.node.style.backgroundColor = this.options.background;
 
-        this.wrapper = wrap("wrapper", this.html);
+        this.wrapper = wrap("wrapper", this.node);
 
-        this.valueNode = wrap("value", this.html);
+        this.valueNode = wrap("value", this.node);
         this.valueNode.style.backgroundColor = this.options.valueBackground;
-        const valueSize = `${this.options.size - (this.options.barsWidth * 2)}px`;
+        const borderWidth = this.options.size * (this.options.barsWidth / 100);
+        const valueSize = `${this.options.size - (borderWidth * 2)}px`;
         this.valueNode.style.width = valueSize;
         this.valueNode.style.height = valueSize;
         this.valueNode.style.lineHeight = valueSize;
-        const valueOffset = `${this.options.barsWidth}px`;
+        const valueOffset = `${borderWidth}px`;
         this.valueNode.style.top = valueOffset;
         this.valueNode.style.left = valueOffset;
         this.valueTextNode = wrap("text", this.valueNode);
@@ -126,7 +149,7 @@ export default class CircularProgressBar {
     }
 
     /**
-     * Change value with only one bar
+     * Change value using only one bar
      * @param {Number} value - Any value
      */
     set value (value) {
@@ -134,19 +157,24 @@ export default class CircularProgressBar {
     }
 
     /**
-     * Change values with multiple bars
+     * Change values using multiple bars
      * @param {Array<Number>} values - Any set of value
      */
     set values (values) {
-        if (this.options.showValue) {
-            this.valueNode.style.visibility = "";
+        const opts = this.options;
+        this.valueNode.style.visibility = opts.showValue ? "" : "hidden";
+        if (opts.showValue) {
             const sum = values.reduce((acc, value) => acc + value, 0);
-            const used = (values.length === 1 ? values[0] : sum);
-            const displayed = this.options.valueUnit === "%" ? (used / this.options.max) * 100 : used;
-            this.valueTextNode.textContent = displayed.toFixed(this.options.valueDecimals) + this.options.valueUnit;
-        }
-        else {
-            this.valueNode.style.visibility = "hidden";
+            const used = Math.min(values.length === 1 ? values[0] : sum, opts.max);
+            if (used === opts.max && opts.valueWhenDone) {
+                if (this.valueTextNode.textContent !== opts.valueWhenDone) {
+                    setTimeout(() => this.valueTextNode.textContent = opts.valueWhenDone, opts.transitionTime);
+                }
+            }
+            else {
+                const displayed = opts.valueUnit === "%" ? (used / opts.max) * 100 : used;
+                this.valueTextNode.textContent = displayed.toFixed(opts.valueDecimals) + opts.valueUnit;
+            }
         }
 
         let offset = 0;
@@ -154,12 +182,12 @@ export default class CircularProgressBar {
         values.forEach((value, index) => {
             let bar = this._bars[index];
             if (!bar) {
-                bar = new Bar(this.options.colors[index]);
+                bar = new Bar(opts.colors[index]);
                 this._bars.push(bar);
-                this.wrapper.appendChild(bar.html);
+                this.wrapper.appendChild(bar.node);
             }
-            const percentage = (value / this.options.max) * 100;
-            bar.update(percentage, this.options.transitionTime, getLooped(this.options.colors, index), offset);
+            const percentage = (Math.min(value, opts.max) / opts.max) * 100;
+            bar.update(percentage, opts.transitionTime, getLooped(opts.colors, index), offset);
             offset += percentage;
             lastIndex = index;
         });
@@ -183,26 +211,34 @@ export default class CircularProgressBar {
     }
 
     /**
-     * Append the component to another element
+     * Append the component to the DOM
      * @param {HTMLElement} parent - Another DOM element
      */
     appendTo (parent) {
-        parent.appendChild(this.html);
+        parent.appendChild(this.node);
+    }
+
+    /**
+     * Remove it from the DOM
+     */
+    remove () {
+        this.node.remove();
     }
 
 
     /**
      * @typedef {Object} CPBOptions
      * @prop {Number} [size=150] - Component diameter in pixels
-     * @prop {Number} [barsWidth=10] - Width of bars
+     * @prop {Number} [barsWidth=7] - Width of bars in % of size
      * @prop {Number} [max=100] - Value for a full 360° rotation
-     * @prop {Boolean} [showValue=true] - Whether or not to display current value inside (if multiple value, sum is displayed)
+     * @prop {Boolean} [showValue=true] - Whether or not to display current value (if multiple value, sum is displayed)
      * @prop {Number} [valueDecimals=0] - Number of decimals to display
      * @prop {String} [valueUnit="%"] - Unit used for display (if set to "%", value is calculated over max)
      * @prop {String} [valueBackground="#333"] - Background color for value
      * @prop {Array<String>} [colors] - Set of colors to use for bars
-     * @prop {String} [background="#666"] - Background color where there's no bar
+     * @prop {String} [background="rgba(0, 0, 0, .3)"] - Background color where there's no bar
      * @prop {Number} [transitionTime=500] - Transition duration
+     * @prop {String} [valueWhenDone=""] - Text to display when at 100%
      */
     /**
      * Returns the default options of the component
@@ -211,15 +247,16 @@ export default class CircularProgressBar {
     static get defaultOptions () {
         return {
             size: 150,
-            barsWidth: 10,
+            barsWidth: 7,
             max: 100,
             showValue: true,
             valueDecimals: 0,
             valueUnit: "%",
             valueBackground: "#333",
-            colors: ["#ffa114", "#4714ff", "#ff14c8", "#c8ff14", "#ff203a", "#3aff20", "#204dff"],
+            colors: ["#0095ff", "#ffa114", "#4714ff", "#ff14c8", "#c8ff14", "#204dff", "#ff203a", "#3aff20"],
             background: "rgba(0, 0, 0, .3)",
             transitionTime: 500,
+            valueWhenDone: "",
         };
     }
 }
