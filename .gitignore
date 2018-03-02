@@ -1,4 +1,6 @@
 .idea/
 node_modules/
 dist/
-/circular-progress-bar.css
+.cache/
+
+circular-progress-bar.css

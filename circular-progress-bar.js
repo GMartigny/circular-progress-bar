@@ -166,7 +166,7 @@ export default class CircularProgressBar {
         if (opts.showValue) {
             const sum = values.reduce((acc, value) => acc + value, 0);
             const used = Math.min(values.length === 1 ? values[0] : sum, opts.max);
-            if (used === opts.max && opts.valueWhenDone !== false) {
+            if (used === opts.max && opts.valueWhenDone !== null) {
                 if (this.valueTextNode.textContent !== opts.valueWhenDone) {
                     setTimeout(() => this.valueTextNode.textContent = opts.valueWhenDone, opts.transitionTime);
                 }
@@ -256,7 +256,7 @@ export default class CircularProgressBar {
             colors: ["#0095ff", "#ffa114", "#4714ff", "#ff14c8", "#c8ff14", "#204dff", "#ff203a", "#3aff20"],
             background: "rgba(0, 0, 0, .3)",
             transitionTime: 500,
-            valueWhenDone: "",
+            valueWhenDone: null,
         };
     }
 }

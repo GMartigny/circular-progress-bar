@@ -47,7 +47,7 @@ options = {
     colors: ["#0095ff", "#ffa114", "#4714ff", "#ff14c8", "#c8ff14", "#204dff", "#ff203a", "#3aff20"],
     background: "rgba(0, 0, 0, .3)",
     transitionTime: 500,
-    whenDone: "",
+    whenDone: false,
 };
 ```
 
@@ -65,4 +65,4 @@ options = {
 | colors | ``Array<String>`` | ``["#ffa114", "#4714ff", "#ff14c8", "#c8ff14", "#ff203a", "#3aff20", "#204dff"]`` | Set of colors to use for bars |
 | background | ``String`` | ``"rgba(0, 0, 0, .3)"`` | Background color where there's no bar |
 | transitionTime | ``Number`` | ``500`` | Transition duration in ms |
-| valueWhenDone | ``String`` | ``""`` | Text to display when at 100% (false to disable) |
+| valueWhenDone | ``String`` | ``null`` | Text to display when at 100% (null to disable) |
