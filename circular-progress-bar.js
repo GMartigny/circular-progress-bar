@@ -166,7 +166,7 @@ export default class CircularProgressBar {
         if (opts.showValue) {
             const sum = values.reduce((acc, value) => acc + value, 0);
             const used = Math.min(values.length === 1 ? values[0] : sum, opts.max);
-            if (used === opts.max && opts.valueWhenDone) {
+            if (used === opts.max && opts.valueWhenDone !== false) {
                 if (this.valueTextNode.textContent !== opts.valueWhenDone) {
                     setTimeout(() => this.valueTextNode.textContent = opts.valueWhenDone, opts.transitionTime);
                 }
@@ -237,8 +237,8 @@ export default class CircularProgressBar {
      * @prop {String} [valueBackground="#333"] - Background color for value
      * @prop {Array<String>} [colors] - Set of colors to use for bars
      * @prop {String} [background="rgba(0, 0, 0, .3)"] - Background color where there's no bar
-     * @prop {Number} [transitionTime=500] - Transition duration
-     * @prop {String} [valueWhenDone=""] - Text to display when at 100%
+     * @prop {Number} [transitionTime=500] - Transition duration in ms
+     * @prop {String} [valueWhenDone=""] - Text to display when at 100% (false to disable)
      */
     /**
      * Returns the default options of the component

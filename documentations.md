@@ -11,7 +11,7 @@ default: ``0``
 
 **[options]** - Component's options  
 type: ``CPBOptions``
-default: see [CPBOptions](#CPBOptions)
+default: see [CPBOptions](#cpboptions)
 
 ### Methods
 
@@ -53,46 +53,16 @@ options = {
 
 ### Params
 
-**[size]** - Component diameter in pixels  
-type: ``Number``  
-default: ``150``
-
-**[barsWidth]** - Width of bars in % of size  
-type: ``Number``  
-default: ``7``
-
-**[max]** - Value for a full 360° rotation  
-type: ``Number``  
-default: ``100``
-
-**[showValue]** - Whether or not to display current value (if multiple value, sum is displayed)  
-type: ``Boolean``  
-default: ``true``
-
-**[valueDecimals]** - Number of decimals to display  
-type: ``Number``  
-default: ``0``
-
-**[valueUnit]** - Unit used for display (if set to "%", value is calculated over max)  
-type: ``String``  
-default: ``"%"``
-
-**[valueBackground]** - Background color for value  
-type: ``String``  
-default: ``"#333"``
-
-**[colors]** - Set of colors to use for bars  
-type: ``Array<String>``  
-default: ``["#ffa114", "#4714ff", "#ff14c8", "#c8ff14", "#ff203a", "#3aff20", "#204dff"]``
-
-**[background]** - Background color where there's no bar  
-type: ``String``  
-default: ``"rgba(0, 0, 0, .3)"``
-
-**[transitionTime]** - Transition duration  
-type: ``Number``  
-default: ``500``
-
-**[valueWhenDone]** - Text to display when at 100%  
-type: ``String``  
-default: ``""``
+| Name | Type | Default | Comment |
+| --- | --- | --- | --- |
+| size | ``Number`` | ``150`` | Component diameter in pixels |
+| barsWidth | ``Number`` | ``7`` | Width of bars in % of size |
+| max | ``Number`` | ``100`` | Value for a full 360° rotation |
+| showValue | ``Boolean`` | ``true`` | Whether or not to display current value (if multiple value, sum is displayed) |
+| valueDecimals | ``Number`` | ``0`` | Number of decimals to display |
+| valueUnit | ``String`` | ``"%"`` | Unit used for display (if set to "%", value is calculated over max) |
+| valueBackground | ``String`` | ``"#333"`` | Background color for value |
+| colors | ``Array<String>`` | ``["#ffa114", "#4714ff", "#ff14c8", "#c8ff14", "#ff203a", "#3aff20", "#204dff"]`` | Set of colors to use for bars |
+| background | ``String`` | ``"rgba(0, 0, 0, .3)"`` | Background color where there's no bar |
+| transitionTime | ``Number`` | ``500`` | Transition duration in ms |
+| valueWhenDone | ``String`` | ``""`` | Text to display when at 100% (false to disable) |
