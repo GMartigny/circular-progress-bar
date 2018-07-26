@@ -1,4 +1,4 @@
-import "./circular-progress-bar.css";
+// import "./circular-progress-bar.css";
 
 const classesPrefix = "circular-progress-bar";
 

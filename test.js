@@ -1,47 +1,37 @@
-/* global test expect */
-
+import test from "ava";
 import CPB from "./circular-progress-bar";
 
-test("Default options", () => {
+global.document = {
+    createElement: () => {
+        return {
+            style: {},
+            appendChild: () => {},
+        };
+    },
+};
+
+test("Default options", (t) => {
     const defaultOpts = CPB.defaultOptions;
 
-    expect(defaultOpts.size).toBe(150);
-    expect(defaultOpts.barsWidth).toBe(7);
-    expect(defaultOpts.max).toBe(100);
-    expect(defaultOpts.showValue).toBe(true);
-    expect(defaultOpts.valueDecimals).toBe(0);
-    expect(defaultOpts.valueUnit).toBe("%");
-    expect(defaultOpts.valueBackground).toBe("#333");
-    expect(defaultOpts.colors).toBeDefined();
-    expect(defaultOpts.background).toBe("rgba(0, 0, 0, .3)");
-    expect(defaultOpts.valueWhenDone).toBe(null);
+    t.is(defaultOpts.size, 150);
+    t.is(defaultOpts.barsWidth, 7);
+    t.is(defaultOpts.max, 100);
+    t.true(defaultOpts.showValue);
+    t.is(defaultOpts.valueDecimals, 0);
+    t.is(defaultOpts.valueUnit, "%");
+    t.is(defaultOpts.valueBackground, "#333");
+    t.true(Array.isArray(defaultOpts.colors));
+    t.is(defaultOpts.background, "rgba(0, 0, 0, .3)");
+    t.is(defaultOpts.valueWhenDone, null);
 });
 
-test("Set values", () => {
-    let value = 42;
-
-    const gauge = new CPB(value);
-    expect(gauge.value).toBeCloseTo(value);
-    expect(gauge.values.length).toEqual(1);
-
-    const values = (new Array(10)).fill(1);
-    gauge.values = values;
-    expect(gauge.values).toEqual(values);
-    expect(gauge.values.length).toEqual(10);
-
-    value = 55;
-    gauge.value = value;
-    expect(gauge.value).toBeCloseTo(value);
-    expect(gauge.values.length).toEqual(1);
-});
-
-test("Attach and remove", () => {
+test("Attach and remove", (t) => {
     const gauge = new CPB(10);
-    expect(gauge.node.parentNode).not.toBeTruthy();
+    gauge.appendTo(global.document.createElement());
 
-    gauge.appendTo(document.body);
-    expect(gauge.node.parentNode).toBeTruthy();
+    t.true(Math.abs(gauge.value - 10) < 1e-10);
 
-    gauge.remove();
-    expect(gauge.node.parentNode).not.toBeTruthy();
+    gauge.values = (new Array(10)).fill(2);
+    t.is(gauge.values.length, 10);
+    t.true(Math.abs(gauge.value - 2) < 1e-10);
 });
