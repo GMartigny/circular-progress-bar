@@ -1,6 +1,6 @@
 {
   "name": "circular-progress-bar",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "CSS circular progress bar.",
   "main": "app.js",
   "files": [
