@@ -5,6 +5,7 @@
   "main": "app.js",
   "files": [
     "dist/",
+    "circular-progress-bar.js",
     "circular-progress-bar.css"
   ],
   "unpkg": "dist/circular-progress-bar.min.js",
