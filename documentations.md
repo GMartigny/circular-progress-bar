@@ -15,7 +15,7 @@ default: see [CPBOptions](#cpboptions)
 
 ### Methods
 
-To change values (or values), just change the ``value`` (or ``values``) property.
+To change value (or values), just change the ``value`` (or ``values``) property.
 
 ```js
 const gauge = new CircularProgressBar();
