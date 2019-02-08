@@ -2,7 +2,7 @@
   "name": "circular-progress-bar",
   "version": "1.2.2",
   "description": "CSS circular progress bar.",
-  "main": "app.js",
+  "main": "index.js",
   "files": [
     "dist/",
     "circular-progress-bar.js",
