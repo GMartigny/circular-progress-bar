@@ -38,6 +38,10 @@ const equals = (n1, n2) => Math.abs(n1 - n2) < Number.EPSILON;
  */
 const toDegree = percent => percent * (360 / 100);
 
+const nodesKey = Symbol("_nodes");
+const valueKey = Symbol("_value");
+const barsKey = Symbol("bars");
+
 /**
  * Class for CircularProgressBar's Bar
  * @class
@@ -49,7 +53,7 @@ class Bar {
     constructor () {
         this.node = wrap("bar");
 
-        this._nodes = (new Array(2)).fill().map(() => {
+        this[nodesKey] = (new Array(2)).fill().map(() => {
             const clip = wrap("clip", this.node);
             return {
                 clip,
@@ -60,7 +64,7 @@ class Bar {
         /**
          * @private
          */
-        this._value = undefined;
+        this[valueKey] = undefined;
     }
 
     /**
@@ -68,7 +72,7 @@ class Bar {
      * @return {Number}
      */
     get value () {
-        return this._value;
+        return this[valueKey];
     }
 
     /**
@@ -79,19 +83,19 @@ class Bar {
      * @param {Number} [offset=0] - Starting position in %
      */
     update (value, time, color, offset = 0) {
-        if (!equals(value, this._value)) {
+        if (!equals(value, this[valueKey])) {
             const half = value / 2;
             const rotate = `rotate3d(0,0,1,${toDegree(half) - 180}deg)`;
-            this._nodes.forEach((node) => {
+            this[nodesKey].forEach((node) => {
                 node.clip.style.transitionDuration = `${time}ms`;
                 node.part.style.transitionDuration = `${time}ms`;
                 node.part.style.transform = rotate;
                 node.part.style.backgroundColor = color;
             });
 
-            this._nodes[0].clip.style.transform = `rotate3d(0,0,1,${toDegree(offset) + 0.3}deg)`;
-            this._nodes[1].clip.style.transform = `rotate3d(0,0,1,${toDegree(half + offset)}deg)`;
-            this._value = value;
+            this[nodesKey][0].clip.style.transform = `rotate3d(0,0,1,${toDegree(offset) + 0.3}deg)`;
+            this[nodesKey][1].clip.style.transform = `rotate3d(0,0,1,${toDegree(half + offset)}deg)`;
+            this[valueKey] = value;
         }
     }
 
@@ -141,7 +145,7 @@ export default class CircularProgressBar {
          * @type {Array<Bar>}
          * @private
          */
-        this._bars = [];
+        this[barsKey] = [];
 
         this.values = Array.isArray(value) ? value : [value];
     }
@@ -178,10 +182,10 @@ export default class CircularProgressBar {
         let offset = 0;
         let lastIndex = 0;
         values.forEach((value, index) => {
-            let bar = this._bars[index];
+            let bar = this[barsKey][index];
             if (!bar) {
                 bar = new Bar(opts.colors[index]);
-                this._bars.push(bar);
+                this[barsKey].push(bar);
                 this.wrapper.appendChild(bar.node);
             }
             const percentage = (Math.min(value, opts.max) / opts.max) * 100;
@@ -189,7 +193,7 @@ export default class CircularProgressBar {
             offset += percentage;
             lastIndex = index;
         });
-        this._bars.splice(lastIndex + 1, this._bars.length).forEach(bar => bar.remove());
+        this[barsKey].splice(lastIndex + 1, this[barsKey].length).forEach(bar => bar.remove());
     }
 
     /**
@@ -197,7 +201,7 @@ export default class CircularProgressBar {
      * @return {Number}
      */
     get value () {
-        return this._bars[0].value;
+        return this[barsKey][0].value;
     }
 
     /**
@@ -205,7 +209,7 @@ export default class CircularProgressBar {
      * @return {Array<Number>}
      */
     get values () {
-        return this._bars.map(bar => bar.value);
+        return this[barsKey].map(bar => bar.value);
     }
 
     /**
