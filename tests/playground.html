@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Playground</title>
+</head>
+<body>
+<div id="wrapper"></div>
+<script src="../dist/circular-progress-bar.min.js"></script>
+<script>
+    const wrapper = document.getElementById("wrapper");
+    const cpb = new CircularProgressBar();
+    cpb.appendTo(wrapper);
+
+    setInterval(() => cpb.value = (cpb.value + (Math.random() * 20)) % 100, 1000);
+</script>
+</body>
+</html>

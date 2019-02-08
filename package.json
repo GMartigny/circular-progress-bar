@@ -12,7 +12,7 @@
   "jsdelivr": "dist/circular-progress-bar.min.js",
   "scripts": {
     "lint": "eslint circular-progress-bar.js",
-    "test": "ava",
+    "test": "ava tests",
     "build": "lessc circular-progress-bar.less circular-progress-bar.css && webpack --mode=development",
     "prepublishOnly": "npm run lint && npm test && webpack --mode=production"
   },

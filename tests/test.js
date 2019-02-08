@@ -1,13 +1,11 @@
 import test from "ava";
-import CPB from "./circular-progress-bar";
+import CPB from "../circular-progress-bar";
 
 global.document = {
-    createElement: () => {
-        return {
-            style: {},
-            appendChild: () => {},
-        };
-    },
+    createElement: () => ({
+        style: {},
+        appendChild: () => {},
+    }),
 };
 
 test("Default options", (t) => {
