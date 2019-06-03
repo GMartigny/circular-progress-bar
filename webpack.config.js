@@ -1,17 +1,27 @@
 module.exports = {
-    entry: "./app.js",
     module: {
-        rules: [{
-            test: /\.css/,
-            use: ["style-loader", {
-                loader: "css-loader",
-            }],
-        }],
+        rules: [
+            {
+                test: /\.less$/,
+                use: [
+                    {
+                        loader: "style-loader",
+                    },
+                    {
+                        loader: "css-loader",
+                    },
+                    {
+                        loader: "less-loader",
+                    },
+                ],
+            },
+        ],
     },
+    entry: "./src/index.js",
     output: {
         filename: "circular-progress-bar.min.js",
         library: "CircularProgressBar",
-        libraryTarget: "this",
+        libraryTarget: "window",
         libraryExport: "default",
     },
 };

@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|PT+Mono&display=swap');
+
+body {
+    background-color: #999;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3 {
+    padding-left: 1em;
+    font-family: 'PT Mono', monospace;
+}
+
+.example {
+    display: inline-block;
+    width: 50%;
+    height: 191px;
+    padding: 2em;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.circular-progress-bar {
+    vertical-align: top;
+}
+
+pre {
+    position: absolute;
+    left: 200px;
+    background-color: #fff;
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+}
+
+pre:before {
+    content: "Options";
+    position: absolute;
+    background-color: #fff;
+    left: 0;
+    bottom: 100%;
+    padding: .2em .5em 0;
+}
+
+a {
+    color: #e53b44;
+}
+
+.github-corner svg {
+    fill: #151513;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    border: 0;
+    right: 0;
+}
+
+.github-corner .octo-arm {
+    transform-origin: 130px 106px;
+}
+
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+}
+
+@keyframes octocat-wave {
+    0%, 100% {
+        transform: rotate(0)
+    }
+    20%, 60% {
+        transform: rotate(-25deg)
+    }
+    40%, 80% {
+        transform: rotate(10deg)
+    }
+}
+
+@media (max-width: 500px) {
+    .github-corner:hover .octo-arm {
+        animation: none
+    }
+
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+    }
+}

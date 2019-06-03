@@ -1,7 +1,8 @@
+.github/
 .idea/
-.cache/
+dist/
 media/
-
-.eslintrc
-circular-progress-bar.less
+pages/
+.nowignore
+now.json
 webpack.config.js

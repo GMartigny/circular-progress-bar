@@ -1,6 +1,8 @@
 # Circular-progress-bar
-[![dependencies Status](https://david-dm.org/GMartigny/circular-progress-bar/status.svg)](https://david-dm.org/GMartigny/circular-progress-bar)
-[![devDependencies Status](https://david-dm.org/GMartigny/circular-progress-bar/dev-status.svg)](https://david-dm.org/GMartigny/circular-progress-bar?type=dev)
+[![NPM version](https://flat.badgen.net/npm/v/circular-progress-bar)](https://www.npmjs.com/package/circular-progress-bar)
+[![NPM weekly download](https://flat.badgen.net/npm/dw/circular-progress-bar)](https://www.npmjs.com/package/circular-progress-bar)
+[![package publish size](https://flat.badgen.net/packagephobia/publish/circular-progress-bar)](https://packagephobia.now.sh/result?p=circular-progress-bar)
+[![Support me on Patreon](https://flat.badgen.net/badge/become/a%20patron/F96753?icon=patreon)](https://www.patreon.com/gmartigny)
 
 ![Sample progress-bar](media/circular-progress-bar.gif)
 
@@ -39,22 +41,20 @@ This module need its style, so your build chain need to be able to deal with CSS
 
 ## CDN
 
-If you want to go old-school, you can fetch the script with [unpkg](https://unpkg.com/) or [jsdelivr](https://www.jsdelivr.com/).
+If you have no build tool, you can directly fetch it from CDN.
 
 ```html
-<script src="https://unpkg.com/circular-progress-bar"></script>
-<!-- or -->
-<script src="https://cdn.jsdelivr.net/npm/circular-progress-bar"></script>
+<script src="https://circular-progress-bar.now.sh"></script>
 
 <script>
-    console.log(new CircularProgressBar());
+    const gauge = new CircularProgressBar();
 </script>
 ```
 
 
 ## Documentation
 
-Go see the [full documentation](documentations.md) or [some examples](https://gmartigny.github.io/circular-progress-bar).
+Check the [full documentation](documentations.md) or [some examples](https://circular-progress-bar.now.sh/examples).
 
 
 ## License

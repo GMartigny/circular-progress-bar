@@ -1,0 +1,28 @@
+{
+    "version": 2,
+    "alias": "circular-progress-bar.now.sh",
+    "builds": [
+        {
+            "src": "./pages/*.html",
+            "use": "@now/html-minifier"
+        },
+        {
+            "src": "./pages/*!(.html)",
+            "use": "@now/static"
+        },
+        {
+            "src": "package.json",
+            "use": "@now/static-build"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/?",
+            "dest": "/circular-progress-bar.min.js"
+        },
+        {
+            "src": "/examples/?",
+            "dest": "/pages/examples.html"
+        }
+    ]
+}

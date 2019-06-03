@@ -1,0 +1,8 @@
+.github/
+.idea/
+dist/
+media/
+test/
+documentation.md
+license
+readme.md

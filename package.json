@@ -2,24 +2,15 @@
   "name": "circular-progress-bar",
   "version": "1.2.2",
   "description": "CSS circular progress bar.",
-  "main": "index.js",
-  "files": [
-    "dist/",
-    "circular-progress-bar.js",
-    "circular-progress-bar.css"
-  ],
-  "unpkg": "dist/circular-progress-bar.min.js",
-  "jsdelivr": "dist/circular-progress-bar.min.js",
+  "main": "src/index.js",
   "scripts": {
-    "lint": "eslint circular-progress-bar.js",
-    "test": "ava tests",
-    "build": "lessc circular-progress-bar.less circular-progress-bar.css && webpack --mode=development",
-    "prepublishOnly": "npm run lint && npm test && webpack --mode=production"
+    "test": "eslint src/**/*.js",
+    "play": "webpack --mode=development --watch",
+    "build": "webpack --mode=production",
+    "now-build": "npm run build"
   },
-  "ava": {
-    "require": [
-      "esm"
-    ]
+  "eslintConfig": {
+    "extends": "@gmartigny/eslint-config"
   },
   "repository": {
     "type": "git",
@@ -38,15 +29,17 @@
   },
   "homepage": "https://gmartigny.github.io/circular-progress-bar",
   "devDependencies": {
-    "@gmartigny/eslint-config": "^1.2.3",
-    "ava": "^1.2.1",
-    "css-loader": "^2.1.0",
-    "eslint": "^5.13.0",
-    "eslint-plugin-import": "^2.16.0",
-    "esm": "^3.2.4",
+    "@gmartigny/eslint-config": "^1.2.5",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-import": "^2.17.3",
     "less": "^3.9.0",
-    "style-loader": "^0.21.0",
-    "webpack": "^4.29.3",
-    "webpack-cli": "^3.2.3"
+    "less-loader": "^5.0.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2"
+  },
+  "dependencies": {
+    "ola": "^1.1.0"
   }
 }
