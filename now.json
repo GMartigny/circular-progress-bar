@@ -21,7 +21,7 @@
             "dest": "/circular-progress-bar.min.js"
         },
         {
-            "src": "/examples/?",
+            "src": "/examples",
             "dest": "/pages/examples.html"
         }
     ]

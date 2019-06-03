@@ -2,7 +2,6 @@
 .idea/
 dist/
 media/
-test/
-documentation.md
+documentations.md
 license
 readme.md
