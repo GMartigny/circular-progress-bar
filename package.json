@@ -1,6 +1,6 @@
 {
     "name": "circular-progress-bar",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "CSS circular progress bar.",
     "main": "src/index.js",
     "unpkg": "public/circular-progress-bar.min.js",
