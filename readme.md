@@ -7,6 +7,7 @@
 
 CSS circular progress bar.
 
+
 ## Installation
 
     npm install circular-progress-bar
@@ -43,7 +44,7 @@ This module need its style, so your build chain need to be able to deal with CSS
 If you have no build tool, you can directly fetch it from CDN.
 
 ```html
-<script src="https://circular-progress-bar.now.sh"></script>
+<script src="https://unpkg.com/circular-progress-bar"></script>
 
 <script>
     const gauge = new CircularProgressBar();
@@ -53,7 +54,7 @@ If you have no build tool, you can directly fetch it from CDN.
 
 ## Documentation
 
-Check the [full documentation](documentations.md) or [some examples](https://circular-progress-bar.now.sh/examples).
+Check the [full documentation](documentations.md) or [some examples](https://circular-progress-bar.now.sh).
 
 
 ## License
