@@ -1,3 +1,5 @@
+const { resolve } = require("path");
+
 module.exports = {
     module: {
         rules: [
@@ -19,6 +21,7 @@ module.exports = {
     },
     entry: "./src/index.js",
     output: {
+        path: resolve(__dirname, "./public"),
         filename: "circular-progress-bar.min.js",
         library: "CircularProgressBar",
         libraryTarget: "window",

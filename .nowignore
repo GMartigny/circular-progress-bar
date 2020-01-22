@@ -1,7 +1,7 @@
 .github/
 .idea/
-dist/
 media/
+public/circular-progress-bar.min.js
 documentations.md
 license
 readme.md

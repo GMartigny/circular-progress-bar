@@ -1,45 +1,46 @@
 {
-  "name": "circular-progress-bar",
-  "version": "2.0.0",
-  "description": "CSS circular progress bar.",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "eslint src/**/*.js && npm run build",
-    "play": "webpack --mode=development --watch",
-    "build": "webpack --mode=production",
-    "now-build": "npm run build"
-  },
-  "eslintConfig": {
-    "extends": "@gmartigny/eslint-config"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GMartigny/circular-progress-bar.git"
-  },
-  "keywords": [
-    "UI",
-    "gauge",
-    "loader",
-    "component"
-  ],
-  "author": "Guillaume Martigny <guillaume.martigny@gmail.com> (https://www.guillaume-martigny.fr)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/GMartigny/circular-progress-bar/issues"
-  },
-  "homepage": "https://gmartigny.github.io/circular-progress-bar",
-  "devDependencies": {
-    "@gmartigny/eslint-config": "^1.3.1",
-    "css-loader": "^3.4.2",
-    "eslint": "^6.8.0",
-    "eslint-plugin-import": "^2.20.0",
-    "less": "^3.10.3",
-    "less-loader": "^5.0.0",
-    "style-loader": "^1.1.3",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
-  },
-  "dependencies": {
-    "ola": "^1.1.1"
-  }
+    "name": "circular-progress-bar",
+    "version": "2.0.0",
+    "description": "CSS circular progress bar.",
+    "main": "src/index.js",
+    "unpkg": "public/circular-progress-bar.min.js",
+    "jsdelivr": "public/circular-progress-bar.min.js",
+    "scripts": {
+        "test": "eslint src/**/*.js && npm run build",
+        "play": "webpack --mode=development --watch",
+        "build": "webpack --mode=production"
+    },
+    "eslintConfig": {
+        "extends": "@gmartigny/eslint-config"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/GMartigny/circular-progress-bar.git"
+    },
+    "keywords": [
+        "UI",
+        "gauge",
+        "loader",
+        "component"
+    ],
+    "author": "Guillaume Martigny <guillaume.martigny@gmail.com> (https://www.guillaume-martigny.fr)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/GMartigny/circular-progress-bar/issues"
+    },
+    "homepage": "https://gmartigny.github.io/circular-progress-bar",
+    "devDependencies": {
+        "@gmartigny/eslint-config": "^1.3.1",
+        "css-loader": "^3.4.2",
+        "eslint": "^6.8.0",
+        "eslint-plugin-import": "^2.20.0",
+        "less": "^3.10.3",
+        "less-loader": "^5.0.0",
+        "style-loader": "^1.1.3",
+        "webpack": "^4.41.5",
+        "webpack-cli": "^3.3.10"
+    },
+    "dependencies": {
+        "ola": "^1.1.1"
+    }
 }
