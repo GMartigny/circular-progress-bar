@@ -30,16 +30,16 @@
   "homepage": "https://gmartigny.github.io/circular-progress-bar",
   "devDependencies": {
     "@gmartigny/eslint-config": "^1.3.1",
-    "css-loader": "^2.1.1",
-    "eslint": "^6.0.1",
-    "eslint-plugin-import": "^2.18.0",
-    "less": "^3.9.0",
+    "css-loader": "^3.4.2",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.0",
+    "less": "^3.10.3",
     "less-loader": "^5.0.0",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.35.3",
-    "webpack-cli": "^3.3.5"
+    "style-loader": "^1.1.3",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   },
   "dependencies": {
-    "ola": "^1.1.0"
+    "ola": "^1.1.1"
   }
 }
