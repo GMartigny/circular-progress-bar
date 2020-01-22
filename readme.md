@@ -2,7 +2,6 @@
 [![NPM version](https://flat.badgen.net/npm/v/circular-progress-bar)](https://www.npmjs.com/package/circular-progress-bar)
 [![NPM weekly download](https://flat.badgen.net/npm/dw/circular-progress-bar)](https://www.npmjs.com/package/circular-progress-bar)
 [![package publish size](https://flat.badgen.net/packagephobia/publish/circular-progress-bar)](https://packagephobia.now.sh/result?p=circular-progress-bar)
-[![Support me on Patreon](https://flat.badgen.net/badge/become/a%20patron/F96753?icon=patreon)](https://www.patreon.com/gmartigny)
 
 ![Sample progress-bar](media/circular-progress-bar.gif)
 
